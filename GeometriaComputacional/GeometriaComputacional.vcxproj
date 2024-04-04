@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="GeometriaComputacional.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\vmath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="lib\glfw3.dll">
