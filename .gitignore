@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.vs/GeometriaComputacional/v17/DocumentLayout.json
+.vs/GeometriaComputacional/v17/Browse.VC.db
+.vs/GeometriaComputacional/v17/.suo
+.vs/GeometriaComputacional/FileContentIndex/be78004e-37b1-4748-8235-7a056bd924eb.vsidx
+.vs/GeometriaComputacional/FileContentIndex/1cda7e6a-15c2-4098-9083-cd2ede1dff71.vsidx
