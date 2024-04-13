@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="GeometriaComputacional.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objutils.cpp" />
     <ClCompile Include="src\vmath.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="include\GLFW\glfw3.h" />
     <ClInclude Include="include\GLFW\glfw3native.h" />
+    <ClInclude Include="src\vmath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|solutionrelative:GeometriaComputacional\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|solutionrelative:GeometriaComputacional\\src\\vmath.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|solutionrelative:GeometriaComputacional\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|solutionrelative:GeometriaComputacional\\src\\vmath.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\objutils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|solutionrelative:GeometriaComputacional\\src\\objutils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7B9312C5-EDBB-4335-8F75-2C2CBFDD5A99}|GeometriaComputacional\\GeometriaComputacional.vcxproj|C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\GeometriaComputacional.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -22,36 +30,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "vmath.h",
+              "DocumentMoniker": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.h",
+              "RelativeDocumentMoniker": "GeometriaComputacional\\src\\vmath.h",
+              "ToolTip": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.h",
+              "RelativeToolTip": "GeometriaComputacional\\src\\vmath.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-13T01:38:16.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "objutils.cpp",
+              "DocumentMoniker": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\objutils.cpp",
+              "RelativeDocumentMoniker": "GeometriaComputacional\\src\\objutils.cpp",
+              "ToolTip": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\objutils.cpp",
+              "RelativeToolTip": "GeometriaComputacional\\src\\objutils.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-11T17:33:00.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "vmath.cpp",
               "DocumentMoniker": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.cpp",
               "RelativeDocumentMoniker": "GeometriaComputacional\\src\\vmath.cpp",
               "ToolTip": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\vmath.cpp",
               "RelativeToolTip": "GeometriaComputacional\\src\\vmath.cpp",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAAACQAAAACAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-04T21:07:11.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\main.cpp",
               "RelativeDocumentMoniker": "GeometriaComputacional\\src\\main.cpp",
               "ToolTip": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\src\\main.cpp",
               "RelativeToolTip": "GeometriaComputacional\\src\\main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-06T16:50:43.742Z"
+              "WhenOpened": "2024-03-06T16:50:43.742Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GeometriaComputacional.cpp",
               "DocumentMoniker": "C:\\Users\\natan\\source\\repos\\GeometriaComputacional\\GeometriaComputacional\\GeometriaComputacional.cpp",
               "RelativeDocumentMoniker": "GeometriaComputacional\\GeometriaComputacional.cpp",
