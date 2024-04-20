@@ -1,6 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "vmath.h"
+#include "tarefa.h"
 
 using namespace std;
 
@@ -62,7 +63,5 @@ int programLoop() {
 
 int main() {
     //test
-    cout << "hello world" << endl;
-    vec2 vecA(1.5, 2.0/3.0);
-    cout << vecA << endl;
+    tarefa2_q3();
 }

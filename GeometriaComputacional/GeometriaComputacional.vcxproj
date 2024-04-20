@@ -140,7 +140,7 @@
     <ClCompile Include="src\algorithms.cpp" />
     <ClCompile Include="GeometriaComputacional.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\vmath.cpp" />
+    <ClCompile Include="src\tarefa.cpp" />
     <ClCompile Include="src\vmath\vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +158,7 @@
     <ClInclude Include="include\GLFW\glfw3.h" />
     <ClInclude Include="include\GLFW\glfw3native.h" />
     <ClInclude Include="src\objutils.h" />
+    <ClInclude Include="src\tarefa.h" />
     <ClInclude Include="src\vmath.h" />
     <ClInclude Include="src\vmath\vec2.h" />
   </ItemGroup>

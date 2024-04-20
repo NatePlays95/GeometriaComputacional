@@ -1,6 +1,7 @@
 #include "vec2.h"
 #include <cmath>
 
+#define PI 3.14159265
 
 // constructor
 vec2::vec2(double x_in, double y_in) {
@@ -75,8 +76,40 @@ vec2 vec2::reflect(vec2& normal) {
 
 //TODO: implementar
 double vec2::toAngle() {
+	return atan2(this->y, this->x);
+}
+
+// Ranges from 0 to 4. PI = 180° = 2(pseudo).
+double vec2::toPseudoAngle() {
+	//double abs_x = abs(x);
+	//double abs_y = abs(y);
+
+	//if (abs_x == 0) {
+	//	if (y > 0) return 1;
+	//	else return 3;
+	//}
+
+	//if (abs_y == 0) {
+	//	if (x > 0) return 0;
+	//	else return 2;
+	//}
+
+	//double value = 0.0
+	//if (abs_x < abs_y) {
+	//	value = abs_x/abs_y
+	//}
+	//else {
+	//	value
+	//}
+
+
 	return 0.0;
 }
-double vec2::toPseudoAngle() {
+
+double vec2::cos() {
+	return this->dot(vec2(0.0, 1.0)) / this->mag();
+}
+
+double vec2::cosPseudo() {
 	return 0.0;
 }

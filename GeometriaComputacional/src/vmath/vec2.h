@@ -41,4 +41,10 @@ public:
 	//angles
 	double toAngle();
 	double toPseudoAngle();
+
+	double sin();
+	double cos();
+
+	double sinPseudo();
+	double cosPseudo();
 };
