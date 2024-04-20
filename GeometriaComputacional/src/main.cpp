@@ -1,5 +1,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "vmath.h"
+
+using namespace std;
 
 void drawTriangle() {
     glBegin(GL_TRIANGLES);
@@ -12,7 +15,7 @@ void drawTriangle() {
     glEnd();
 }
 
-int main() {
+int programLoop() {
     // Initialize GLFW
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW" << std::endl;
@@ -55,4 +58,11 @@ int main() {
     // Clean up GLFW and exit
     glfwTerminate();
     return 0;
+}
+
+int main() {
+    //test
+    cout << "hello world" << endl;
+    vec2 vecA(1.5, 2.0/3.0);
+    cout << vecA << endl;
 }
