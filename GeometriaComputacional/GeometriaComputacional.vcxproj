@@ -114,6 +114,12 @@
       <AdditionalLibraryDirectories>$(ProjectDir)lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)assets" "$(TargetDir)assets" /s /e /i /y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copia pasta assets para a build</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -135,6 +141,12 @@
       <AdditionalLibraryDirectories>$(ProjectDir)lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3dll.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)assets" "$(TargetDir)assets" /s /e /i /y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copia pasta assets para a build</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\algorithms.cpp" />
@@ -157,7 +169,7 @@
     <ClInclude Include="src\algorithms.h" />
     <ClInclude Include="include\GLFW\glfw3.h" />
     <ClInclude Include="include\GLFW\glfw3native.h" />
-    <ClInclude Include="src\objutils.h" />
+    <ClInclude Include="src\objutils.hpp" />
     <ClInclude Include="src\tarefa.h" />
     <ClInclude Include="src\vmath.h" />
     <ClInclude Include="src\vmath\vec2.h" />

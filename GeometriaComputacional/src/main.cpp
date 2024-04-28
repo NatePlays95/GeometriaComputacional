@@ -2,6 +2,7 @@
 #include <iostream>
 #include "vmath.h"
 #include "tarefa.h"
+#include "objutils.hpp"
 
 using namespace std;
 
@@ -63,5 +64,6 @@ int programLoop() {
 
 int main() {
     //test
-    tarefa2_q3();
+    //tarefa2_q3();
+    ObjUtils::loadFromFile("onix.obj");
 }
