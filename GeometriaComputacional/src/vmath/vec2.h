@@ -41,6 +41,7 @@ public:
 	//angles
 	double toAngle();
 	double toPseudoAngle();
+	double toOrientedAngle();
 
 	double sin();
 	double cos();
