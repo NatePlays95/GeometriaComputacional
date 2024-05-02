@@ -1,5 +1,3 @@
-//TODO: Sorting algorithms for vec2s.
-
 #include <algorithm>
 #include <iostream>
 #include "algorithms.h"
@@ -8,14 +6,12 @@
 using namespace std;
 
 
-void swap(vector<double>* vec, int indexA, int indexB) {
+template <typename T> void swap(vector<T>* vec, int indexA, int indexB) {
     if (indexA == indexB) return;
-    double temp = vec->at(indexA);
+    T temp = vec->at(indexA);
     vec->at(indexA) = vec->at(indexB);
     vec->at(indexB) = temp;
-
 }
-
 
 int partition(vector<double>* vec, int startIndex, int endIndex) {
     int pivot = vec->at(endIndex);
@@ -96,4 +92,60 @@ void mergeSort(vector<double>* vec) {
     mergeSort(&leftSubVec);
     mergeSort(&rightSubVec);
     merge(vec, &leftSubVec, &rightSubVec);
+}
+
+//Diego
+//Sorting algorithms for vec2s.
+
+int partitionVec2(vector<vec2>* points, int startIndex, int endIndex, const char& parameter) {
+    if (parameter == 'x') {
+        double pivot = points->at(endIndex).x;
+        int i = startIndex - 1;
+        for (int j = startIndex; j < endIndex; j++) {
+            if (points->at(j).x < pivot) {
+                i += 1;
+                swap(points, i, j);
+            }
+        }
+        i += 1;
+        swap(points, i, endIndex);
+        return i;
+    }
+    else if (parameter == 'y') {
+        double pivot = points->at(endIndex).y;
+        int i = startIndex - 1;
+        for (int j = startIndex; j < endIndex; j++) {
+            if (points->at(j).y < pivot) {
+                i += 1;
+                swap(points, i, j);
+            }
+        }
+        i += 1;
+        swap(points, i, endIndex);
+        return i;
+    }
+    else {
+        runtime_error("Invalid Parameter!");
+    }
+}
+
+void quickSortStepVec2(vector<vec2>* vec, int startIndex, int endIndex, const char& parameter) {
+    if ((parameter == 'x') or (parameter == 'y')) {
+        if (endIndex <= startIndex) return; // recursion f0 case
+
+        int pivotIndex = partitionVec2(vec, startIndex, endIndex, parameter);
+        quickSortStepVec2(vec, startIndex, pivotIndex - 1, parameter);
+        quickSortStepVec2(vec, pivotIndex + 1, endIndex, parameter);
+    }
+    else {
+        runtime_error("Invalid Parameter!");
+    }
+}
+
+void quickSortVec2x(vector<vec2>* points) {
+    quickSortStepVec2(points, 0, points->size() - 1, 'x');
+}
+
+void quickSortVec2y(vector<vec2>* points) {
+    quickSortStepVec2(points, 0, points->size() - 1, 'y');
 }
