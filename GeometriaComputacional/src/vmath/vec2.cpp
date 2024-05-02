@@ -104,7 +104,7 @@ double vec2::toPseudoAngle() {
 		//First or second quadrant
 		if (this->x >= 0) {
 			//First quadrant
-			if (this->x == 0 and this->y == 0) {
+			if (this->x == 0 && this->y == 0) {
 				return 0;
 			}
 			else if (this->x >= std::abs(this->y)) {
