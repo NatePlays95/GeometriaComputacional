@@ -74,95 +74,42 @@ vec2 vec2::reflect(vec2& normal) {
 	return *this - (normal * (this->dot(normal)) * 2);
 }
 
+//TODO: implementar
 double vec2::toAngle() {
 	return atan2(this->y, this->x);
+}
+
+// Ranges from 0 to 4. PI = 180° = 2(pseudo).
+double vec2::toPseudoAngle() {
+	//double abs_x = abs(x);
+	//double abs_y = abs(y);
+
+	//if (abs_x == 0) {
+	//	if (y > 0) return 1;
+	//	else return 3;
+	//}
+
+	//if (abs_y == 0) {
+	//	if (x > 0) return 0;
+	//	else return 2;
+	//}
+
+	//double value = 0.0
+	//if (abs_x < abs_y) {
+	//	value = abs_x/abs_y
+	//}
+	//else {
+	//	value
+	//}
+
+
+	return 0.0;
 }
 
 double vec2::cos() {
 	return this->dot(vec2(0.0, 1.0)) / this->mag();
 }
 
-double vec2::sin() {
-	//TODO
-	return 0;
-}
-
 double vec2::cosPseudo() {
-	//TODO
-	return 0;
-}
-
-double vec2::sinPseudo() {
-	//TODO	
-	return 0;
-}
-
-//Diego
-//0 <= PseudoAngle() < 8 (Unit Square)
-double vec2::toPseudoAngle() {
-	if (this->y <= 0) {
-		//First or second quadrant
-		if (this->x >= 0) {
-			//First quadrant
-			if (this->x == 0 and this->y == 0) {
-				return 0;
-			}
-			else if (this->x >= std::abs(this->y)) {
-				//Side Edge -> 0 <= value <= 1
-				return (std::abs(this->y)) / this->x;
-			}
-			else {
-				//Top Edge -> 1 < value <= 2
-				return 2 - (this->x / std::abs(this->y));
-			}
-		}
-		else {
-			//Second quadrant
-			if (this->y < this->x) {
-				//Top Edge -> 2 < value < 3
-				return 2 + (this->x / this->y);
-			}
-			else {
-				//Side Edge -> 3 <= value <= 4
-				return 4 - (this->y / this->x);
-			}
-		}
-	}
-	else {
-		//Third or fourth quadrant
-		if (this->x <= 0) {
-			//Third quadrant
-			if (std::abs(this->x) >= this->y) {
-				//Side Egde -> 4 < value <= 5
-				return 4 + (this->y / std::abs(this->x));
-			}
-			else {
-				//Top Edge -> 5 < value <= 6
-				return 6 - (std::abs(this->x) / this->y);
-			}
-		}
-		else {
-			//Fourth quadrant
-			if (this->y > this->x) {
-				//Top Edge -> 6 < value < 7
-				return 6 + (this->x / this->y);
-			}
-			else {
-				//Side Edge -> 7 <= value < 8
-				return 8 - (this->y / this->x);
-			}
-		}
-	}
-}
-
-//Diego
-double vec2::toOrientedAngle() {
-	//Polar Ordering: Order the points angularly in the CCW direction from the origin vector u = (1,0)
-	if (this->y <= 0) {
-		//First or second quadrant (0 <= value <= PI)
-		return this->toAngle();
-	}
-	else {
-		return (2 * PI) - this->toAngle();
-	}
+	return 0.0;
 }
