@@ -65,6 +65,7 @@ int programLoop() {
 int main() {
     //test
     //tarefa2_q3();
-    auto onix = ObjUtils::loadFromFile("onix.obj");
-    ObjUtils::saveToFile(onix, "onix_export.obj");
+    //auto onix = ObjUtils::loadFromFile("onix.obj");
+    //ObjUtils::saveToFile(onix, "onix_export.obj");
+    tarefa2_q5();
 }

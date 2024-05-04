@@ -151,7 +151,7 @@ void quickSortVec2y(vector<vec2>* points) {
     quickSortStepVec2(points, 0, points->size() - 1, 'y');
 }
 
-//Diego
+////Diego
 bool rotationIndexPosition(vector<vec2>* points, const vec2& q) {
     //Points is a vector of polygon's vertices, e.g, for a square, we have p0, p1, p2, p3.
 
@@ -197,4 +197,45 @@ bool rotationIndexPosition(vector<vec2>* points, const vec2& q) {
     else {
         return false;
     }
+}
+
+
+bool pointInShapeRaycast(vector<vec2>* shapeVertices, const vec2& point) {
+    // Points is a vector of polygon's vertices, e.g, for a square, we have p0, p1, p2, p3.
+    // We cast a ray from point, towards positive X. see how many times it crosses an edge
+    // even number of crossings, it's outside; odd, it's inside.
+
+    int crossingCount = 0;
+    int size = shapeVertices->size();
+    vec2 v1, v2;
+
+
+    for (int index = 0; index < size; index++) {
+        v1 = shapeVertices->at(index);
+        if (index == size - 1) {
+            v2 = shapeVertices->at(0);
+        }
+        else {
+            v2 = shapeVertices->at(index + 1);
+        }
+        
+        // First condition: at least one of the vertices should be to the right of point
+        //if ((point.x >= v1.x) && (point.x >= v2.x)) continue;
+
+        // Second condition: point.y is between v1 and v2
+        if ((point.y > v1.y) == (point.y > v2.y)) continue;
+
+        // Check Collision
+        // all the points in (v1, v2) can be obtained from v1 + (v2-v1)*t, 0 <= t <= 1.
+        // all the points in our raycast can be obtained with point + u*<1, 0>, with u >= 0.
+
+        // collision = v1 + (v2 - v1)*(point.y - v1.y)/(v2.y - v1.y)
+        vec2 collisionPoint = v1 + (v2 - v1) * ((point.y - v1.y) / (v2.y - v1.y));
+        if (collisionPoint.x >= point.x) { // if collision is to the right
+            crossingCount += 1;
+            //cout << "collided" << v1 << v2 << endl;
+        }
+    }
+    //cout << crossingCount << endl;
+    return !(crossingCount % 2 == 0);
 }
