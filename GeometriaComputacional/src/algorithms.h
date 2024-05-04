@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <stdexcept>
+#include <cmath>
 #include "vmath.h"
 
 using namespace std;
@@ -15,3 +16,4 @@ void merge(vector<double>* vec, vector<double>* leftVec, vector<double>* rightVe
 void mergeSort(vector<double>* vec);
 void quickSortVec2x(vector<vec2>* points);
 void quickSortVec2y(vector<vec2>* points);
+bool rotationIndexPosition(vector<vec2>* points, const vec2& q);

@@ -5,6 +5,7 @@
 
 using namespace std;
 
+#define PI 3.14159265
 
 template <typename T> void swap(vector<T>* vec, int indexA, int indexB) {
     if (indexA == indexB) return;
@@ -148,4 +149,52 @@ void quickSortVec2x(vector<vec2>* points) {
 
 void quickSortVec2y(vector<vec2>* points) {
     quickSortStepVec2(points, 0, points->size() - 1, 'y');
+}
+
+//Diego
+bool rotationIndexPosition(vector<vec2>* points, const vec2& q) {
+    //Points is a vector of polygon's vertices, e.g, for a square, we have p0, p1, p2, p3.
+
+    vector<double> angles{};
+    
+    for (int i = 0; i < points->size(); i++) {
+        //We'll need -> vec2(p_i - q) and (P_i+1 - q) -> We gonna call vec2(a) and vec2(b)
+        //Extra Case: In the last loop, we gonna have -> vec(p_max - q) and vec2(p_0 - q)
+
+        vec2 a;
+        vec2 b;
+
+        //Check if it's an Extra case or not
+        if (i != (points->size() - 1)) {
+            //Normal Case
+            a = points->at(i) - q;
+            b = points->at(i + 1) - q;
+        }
+        else {
+            //Extra Case
+            a = points->at(i) - q;
+            b = points->at(0) - q;
+        }
+
+        //The angle between a and b = arc cos((a . b) / (|a| |b|))
+        double teta = acos((a.dot(b)) / (a.mag() * b.mag()));
+        teta = teta * 180.0 / PI; //Rad -> Degrees
+
+        angles.push_back(teta);
+    }
+
+    double sum = 0;
+
+    for (int i = 0; i < angles.size(); i++) {
+        sum += angles.at(i);
+    }
+
+    //I will tolerate an error of up to 1e-3
+    //+-1 -> Inside -> True
+    if (((1 <= sum / 360) and (sum / 360 <= 1 + 1e-3)) or ((- 1 >= sum / 360) and (sum / 360 >= -1 - 1e-3))) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
