@@ -12,6 +12,7 @@ public:
 	double x, y;
 
 	// constructor
+	vec2();
 	vec2(double x_in, double y_in);
 	vec2(const vec2& v); //copy
 

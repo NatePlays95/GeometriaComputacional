@@ -3,6 +3,12 @@
 
 #define PI 3.14159265
 
+//Default Constructor
+vec2::vec2() {
+	this->x = 0;
+	this->y = 0;
+}
+
 // constructor
 vec2::vec2(double x_in, double y_in) {
 	x = x_in; y = y_in;
