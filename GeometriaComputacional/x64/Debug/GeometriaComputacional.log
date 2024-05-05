@@ -1,4 +1,24 @@
-﻿  tarefa.cpp
+﻿  algorithms.cpp
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(18,15): warning C4244: 'inicializando': conversão de '_Ty' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(18,15): warning C4244:         with
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(18,15): warning C4244:         [
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(18,15): warning C4244:             _Ty=double
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(18,15): warning C4244:         ]
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(42,39): warning C4267: 'argumento': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(48,14): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(79,20): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(147,49): warning C4267: 'argumento': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(151,49): warning C4267: 'argumento': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(209,14): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(246,9): warning C4804: '>=': uso não seguro de tipo 'bool' em operação
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(250,9): warning C4804: '>=': uso não seguro de tipo 'bool' em operação
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(257,14): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(262,24): warning C4834: descartando o valor retornado da função com o atributo [[nodiscard]]
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(265,24): warning C4834: descartando o valor retornado da função com o atributo [[nodiscard]]
+  main.cpp
+  tarefa.cpp
+  Gerando Código...
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\algorithms.cpp(131,1): warning C4715: 'partitionVec2': nem todos os caminhos de controle retornam um valor
   GeometriaComputacional.vcxproj -> C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\x64\Debug\GeometriaComputacional.exe
   Copia pasta assets para a build
   C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\assets\onix.blend

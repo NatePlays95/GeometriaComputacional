@@ -33,6 +33,10 @@ void tarefa2_q3() {
 	cout << "prod. vetorial ortogonal cw (2.5, 0)x(0, -2.5):  " << vec2(2.5, 0).cross(vec2(0, -2.5)) << endl;
 }
 
+void tarefa2_q4() {
+
+}
+
 void tarefa2_q5() {
 	//square
 	vector<vec2>* square = new vector<vec2>();
@@ -48,25 +52,41 @@ void tarefa2_q5() {
 
 	vec2 p1(5, -4);  //inside
 	vec2 p2(10, -9); //outside
-
-	bool isP1Inside = pointInShapeRaycast(square, p1);
-	bool isP2Inside = pointInShapeRaycast(square, p2);
+	vec2 p3, p4, p5, p6, p7;
 
 	cout << "teste de raycast, 1 = dentro ||| 0 = fora:" << endl;
-	cout << p1 << " dentro? " << isP1Inside << endl;
-	cout << p2 << " dentro? " << isP2Inside << endl;
+	cout << p1 << " dentro? " << pointInShapeRaycast(square, p1) << endl;
+	cout << p2 << " dentro? " << pointInShapeRaycast(square, p2) << endl;
 	cout << "casos patologicos" << endl;
-	vec2 p3(2, -2);
+	p3 = vec2(2, -2);
 	cout << p3 << " fora, alinhado a aresta: " << pointInShapeRaycast(square, p3) << endl;
-	vec2 p4(3, -5);
+	p4 = vec2(3, -5);
 	cout << p4 << " em cima da aresta esquerda: " << pointInShapeRaycast(square, p4) << endl;
 	p4 = vec2(8, -5);
 	cout << p4 << " em cima da aresta direita: " << pointInShapeRaycast(square, p4) << endl;
-	vec2 p5(8 - 0.0001, -5);
+	p5 = vec2(8 - 0.0001, -5);
 	cout << p5 << " dentro, muito proximo da aresta: " << pointInShapeRaycast(square, p5) << endl;
-	vec2 p6(3, -2);
+	p6 = vec2(3, -2);
 	cout << p6 << " em cima de um dos vertices, alinhado a aresta: " << pointInShapeRaycast(square, p6) << endl;
-	vec2 p7(0, 5);
+	p7 = vec2(0, 5);
 	cout << p7 << " passando por uma ponta de 2 arestas (triangulo): " << pointInShapeRaycast(triangle, p7) << endl;
+	cout << endl;
+
+	cout << "teste de indice de rotacao, 1 = dentro ||| 0 = fora:" << endl;
+	cout << p1 << " dentro? " << rotationIndexPosition(square, p1) << endl;
+	cout << p2 << " dentro? " << rotationIndexPosition(square, p2) << endl;
+	cout << "casos patologicos" << endl;
+	p3 = vec2(2, -2);
+	cout << p3 << " fora, alinhado a aresta: " << rotationIndexPosition(square, p3) << endl;
+	p4 = vec2(3, -5);
+	cout << p4 << " em cima da aresta esquerda: " << rotationIndexPosition(square, p4) << endl;
+	p4 = vec2(8, -5);
+	cout << p4 << " em cima da aresta direita: " << rotationIndexPosition(square, p4) << endl;
+	p5 = vec2(8 - 0.0001, -5);
+	cout << p5 << " dentro, muito proximo da aresta: " << rotationIndexPosition(square, p5) << endl;
+	p6 = vec2(3, -2);
+	cout << p6 << " em cima de um dos vertices, alinhado a aresta: " << rotationIndexPosition(square, p6) << endl;
+	p7 = vec2(0, 5);
+	cout << p7 << " passando por uma ponta de 2 arestas (triangulo): " << rotationIndexPosition(triangle, p7) << endl;
 	cout << endl;
 }

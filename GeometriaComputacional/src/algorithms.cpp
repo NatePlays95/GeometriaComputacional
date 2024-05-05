@@ -239,3 +239,34 @@ bool pointInShapeRaycast(vector<vec2>* shapeVertices, const vec2& point) {
     //cout << crossingCount << endl;
     return !(crossingCount % 2 == 0);
 }
+
+bool doSegmentsCross(const vec2& a, const vec2& b, const vec2& c, const vec2& d) {
+    //(AB x AC) (AB x AD) < 0
+    bool step1 = (b - a).cross(c - a) * (b - a).cross(d - a);
+    if (step1 >= 0) return false;
+    
+    //(CD x CA) (CD x CB) < 0
+    bool step2 = (d - c).cross(a - c) * (d - c).cross(b - c);
+    if (step2 >= 0) return false;
+
+    return true;
+}
+
+double orientedArea(vector<vec2>* convexShape) {
+    double sum = 0;
+    int size = convexShape->size();
+    for (int index = 0; index < size; index++) {
+        vec2 p1, p2;
+        p1 = convexShape->at(index);
+        if (index == size - 1) {
+            convexShape->at(0);
+        }
+        else {
+            convexShape->at(index+1);
+        }
+
+        double step = p1.cross(p2);
+        sum += step;
+    }
+    return sum / 2;
+}
