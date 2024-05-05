@@ -106,23 +106,24 @@ double vec2::sinPseudo() {
 //Diego
 //0 <= PseudoAngle() < 8 (Unit Square)
 //"Fowler Angles"
+//TODO: checar se os pseudo angulos tao funcionando direitinho, ex. um For loop.
 double vec2::toPseudoAngle() {
 	double absX = abs(this->x);
 	double absY = abs(this->y);
 	
 
 	if (absX == 0) {
-		if (absY == 0) return 0;
-		else if (absY > 0) return 2;
-		else if (absY < 0) return 6;
+		if (this->y == 0) return 0;
+		else if (this->y > 0) return 2;
+		else if (this->y < 0) return 6;
 	}
 
 	if (absY == 0) {
-		if (absX < 0) return 4;
-		else if (absX >= 0) return 0;
+		if (this->x < 0) return 4;
+		else if (this->x >= 0) return 0;
 	}
 
-	if (this->y <= 0) {
+	if (this->y >= 0) {
 		//First or second quadrant
 		if (this->x >= 0) {
 			//First quadrant
