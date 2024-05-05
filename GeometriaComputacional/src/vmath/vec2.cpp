@@ -106,6 +106,9 @@ double vec2::sinPseudo() {
 //Diego
 //0 <= PseudoAngle() < 8 (Unit Square)
 double vec2::toPseudoAngle() {
+	double absX = abs(this->x);
+	double absY = abs(this->y);
+
 	if (this->y <= 0) {
 		//First or second quadrant
 		if (this->x >= 0) {
@@ -113,24 +116,24 @@ double vec2::toPseudoAngle() {
 			if (this->x == 0 && this->y == 0) {
 				return 0;
 			}
-			else if (this->x >= std::abs(this->y)) {
+			else if (absX >= absY) {
 				//Side Edge -> 0 <= value <= 1
-				return (std::abs(this->y)) / this->x;
+				return absY/absX;
 			}
 			else {
 				//Top Edge -> 1 < value <= 2
-				return 2 - (this->x / std::abs(this->y));
+				return 2 - absX/absY;
 			}
 		}
 		else {
 			//Second quadrant
-			if (this->y < this->x) {
+			if (absY < absX) {
 				//Top Edge -> 2 < value < 3
-				return 2 + (this->x / this->y);
+				return 2 + absX/absY;
 			}
 			else {
 				//Side Edge -> 3 <= value <= 4
-				return 4 - (this->y / this->x);
+				return 4 - absY/absX;
 			}
 		}
 	}
@@ -138,24 +141,24 @@ double vec2::toPseudoAngle() {
 		//Third or fourth quadrant
 		if (this->x <= 0) {
 			//Third quadrant
-			if (std::abs(this->x) >= this->y) {
+			if (absX >= absY) {
 				//Side Egde -> 4 < value <= 5
-				return 4 + (this->y / std::abs(this->x));
+				return 4 + absY / absX;
 			}
 			else {
 				//Top Edge -> 5 < value <= 6
-				return 6 - (std::abs(this->x) / this->y);
+				return 6 - absX / absY;
 			}
 		}
 		else {
 			//Fourth quadrant
-			if (this->y > this->x) {
+			if (absY > absX) {
 				//Top Edge -> 6 < value < 7
-				return 6 + (this->x / this->y);
+				return 6 + absX / absY;
 			}
 			else {
 				//Side Edge -> 7 <= value < 8
-				return 8 - (this->y / this->x);
+				return 8 - absY / absX;
 			}
 		}
 	}
