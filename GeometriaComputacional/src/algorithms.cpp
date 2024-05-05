@@ -270,3 +270,7 @@ double orientedArea(vector<vec2>* convexShape) {
     }
     return sum / 2;
 }
+
+double pseudoAngleBetween(vec2 a, vec2 b) {
+    return b.toPseudoAngle() - a.toPseudoAngle();
+}

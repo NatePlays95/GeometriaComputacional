@@ -20,3 +20,4 @@ bool rotationIndexPosition(vector<vec2>* points, const vec2& q);
 bool pointInShapeRaycast(vector<vec2>* shapeVertices, const vec2& point);
 bool doSegmentsCross(const vec2& a, const vec2& b, const vec2& c, const vec2& d);
 double orientedArea(vector<vec2>* convexShape);
+double pseudoAngleBetween(vec2 a, vec2 b);
