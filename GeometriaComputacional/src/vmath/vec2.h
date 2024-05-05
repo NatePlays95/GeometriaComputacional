@@ -42,6 +42,7 @@ public:
 	//angles
 	double toAngle();
 	double toPseudoAngle();
+	double toPseudoAngleGraham();
 	double toOrientedAngle();
 
 	double sin();

@@ -105,18 +105,28 @@ double vec2::sinPseudo() {
 
 //Diego
 //0 <= PseudoAngle() < 8 (Unit Square)
+//"Fowler Angles"
 double vec2::toPseudoAngle() {
 	double absX = abs(this->x);
 	double absY = abs(this->y);
+	
+
+	if (absX == 0) {
+		if (absY == 0) return 0;
+		else if (absY > 0) return 2;
+		else if (absY < 0) return 6;
+	}
+
+	if (absY == 0) {
+		if (absX < 0) return 4;
+		else if (absX >= 0) return 0;
+	}
 
 	if (this->y <= 0) {
 		//First or second quadrant
 		if (this->x >= 0) {
 			//First quadrant
-			if (this->x == 0 && this->y == 0) {
-				return 0;
-			}
-			else if (absX >= absY) {
+			if (absX >= absY) {
 				//Side Edge -> 0 <= value <= 1
 				return absY/absX;
 			}
@@ -162,6 +172,12 @@ double vec2::toPseudoAngle() {
 			}
 		}
 	}
+}
+
+double vec2::toPseudoAngleGraham() {
+	double p = this->x / (abs(this->x) + abs(this->y)); // -1 to 1 increasing with x
+	if (this->y < 0) return 3 + p;						// 2 to 4 increasing with x
+	else return 1 - p;									// 0 to 2 decreasing with x
 }
 
 //Diego

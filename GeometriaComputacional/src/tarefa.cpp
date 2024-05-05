@@ -7,7 +7,19 @@
 using namespace std;
 
 
+void tarefa2_q2() {
+	vec2 v1, v2, v3, v4;
+	v1 = vec2(1.5, 2.5);
+	v2 = vec2(-0.4, 0.8);
+	v3 = vec2(-1, 0);
+	v4 = vec2(0.8, -0.1);
 
+	cout << "pseudoangulo visto em sala [0..8] ||| pseudo angulo alternativo [0..4]" << endl;
+	cout << v1 << ": " << v1.toPseudoAngle() << " ||| " << v1.toPseudoAngleGraham() << endl;
+	cout << v2 << ": " << v2.toPseudoAngle() << " ||| " << v2.toPseudoAngleGraham() << endl;
+	cout << v3 << ": " << v3.toPseudoAngle() << " ||| " << v3.toPseudoAngleGraham() << endl;
+	cout << v4 << ": " << v4.toPseudoAngle() << " ||| " << v4.toPseudoAngleGraham() << endl;
+}
 
 void tarefa2_q3() {
 	vec2 v1 = vec2(1.5, 2.5);
