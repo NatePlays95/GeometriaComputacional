@@ -7,6 +7,7 @@
 using namespace std;
 
 
+
 void tarefa2_q2() {
 	vec2 v1, v2, v3, v4;
 	v1 = vec2(1.5, 2.5);
@@ -101,4 +102,17 @@ void tarefa2_q5() {
 	p7 = vec2(0, 5);
 	cout << p7 << " passando por uma ponta de 2 arestas (triangulo): " << rotationIndexPosition(triangle, p7) << endl;
 	cout << endl;
+}
+
+
+void teste_pseudoangulos() {
+	double PI = 3.14159265;
+	double buffer = 0.0;
+	double angle = 0.0;
+	vec2 v;
+	for (int i = 0; i < 30; i++) {
+		angle = PI * i * 0.125 + buffer; //pi/8 = 22.5 deg
+		v = vec2(cos(angle), sin(angle));
+		cout << v << " angle: buffer + PI*" << i * 0.25 << " pseudo: " << v.toPseudoAngle() << endl;
+	}
 }

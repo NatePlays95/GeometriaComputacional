@@ -138,7 +138,7 @@ double vec2::toPseudoAngle() {
 		}
 		else {
 			//Second quadrant
-			if (absY < absX) {
+			if (absY >= absX) {
 				//Top Edge -> 2 < value < 3
 				return 2 + absX/absY;
 			}
@@ -163,7 +163,7 @@ double vec2::toPseudoAngle() {
 		}
 		else {
 			//Fourth quadrant
-			if (absY > absX) {
+			if (absY >= absX) {
 				//Top Edge -> 6 < value < 7
 				return 6 + absX / absY;
 			}

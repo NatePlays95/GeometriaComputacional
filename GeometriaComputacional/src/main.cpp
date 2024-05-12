@@ -67,5 +67,5 @@ int main() {
     //tarefa2_q3();
     //auto onix = ObjUtils::loadFromFile("onix.obj");
     //ObjUtils::saveToFile(onix, "onix_export.obj");
-    tarefa2_q2();
+    teste_pseudoangulos();
 }
