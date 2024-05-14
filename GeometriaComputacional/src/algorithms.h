@@ -21,3 +21,6 @@ bool pointInShapeRaycast(vector<vec2>* shapeVertices, const vec2& point);
 bool doSegmentsCross(const vec2& a, const vec2& b, const vec2& c, const vec2& d);
 double orientedArea(vector<vec2>* convexShape);
 double pseudoAngleBetween(vec2 a, vec2 b);
+vector<vec2> jarvis(vector<vec2>* points);
+double orientation(const vec2& p1, const vec2& p2, const vec2& p3);
+double dist(const vec2& p1, const vec2& p2);

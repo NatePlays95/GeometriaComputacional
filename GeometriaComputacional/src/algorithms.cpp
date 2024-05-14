@@ -274,3 +274,90 @@ double orientedArea(vector<vec2>* convexShape) {
 double pseudoAngleBetween(vec2 a, vec2 b) {
     return b.toPseudoAngle() - a.toPseudoAngle();
 }
+
+//Diego --> Jarvis
+double orientation(const vec2& p1, const vec2& p2, const vec2& p3) {
+    //Compare the slope between two known points. So, in the end of the day, we can know the orientation.
+    double res = (p3.y - p2.y) * (p2.x - p1.x) - (p2.y - p1.y) * (p3.x - p2.x);
+    if (res > 0) {
+        //CCW
+        return 1;
+    }
+    else if (res < 0) {
+        //CW
+        return -1;
+    }
+    else {
+        //Colinear
+        return 0;
+    }
+}
+
+double dist(const vec2& p1, const vec2& p2) {
+    return sqrt(pow(p2.y - p1.y, 2) + pow(p2.x - p1.x, 2));
+}
+
+vector<vec2> jarvis(vector<vec2>* points) {
+    
+    vector<vec2> res{};
+    
+    //First Step -> Find P0
+    quickSortVec2x(points);
+
+    /*Pathological Case : If there are extreme points with the same X value,
+    we will take the point with the highest Y value among these */
+    int on_hull = 0;
+    if (points->at(0).x == points->at(1).x) {
+        for (int i = 1; i < (points->size() - 1); i++) {
+            if (points->at(i).x != points->at(i+1).x) {
+                //Index 'i' is the last position which contains a candidate point.
+                double y_max = points->at(0).y;
+                for (int j = 1; j <= i; j++) {
+                    if (points->at(j).y > y_max) {
+                        y_max = points->at(j).y;
+                        on_hull = j;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    //Now, we have p0!
+   
+
+    //Now, let's go to the magic!
+    bool cond = true;
+    
+    while (cond) {
+        res.push_back(points->at(on_hull));
+        vec2 next_point = points->at(0); //The fist point in the set
+        vec2 point_in_the_hull = points->at(on_hull);
+        for (int i = 0; i < points->size(); i++) {
+            /* 1- point_in_the_hull is the last point appended in the convex hull, and we are sure
+            that this point belongs to the convex hull subset.
+               2- next_point is the next candidate to be appended. We must check the orientation!
+               3- points->at(i) is used to run the set of points */
+            double o = orientation(point_in_the_hull, next_point, points->at(i));
+            /*We update the next_point when the orientation is CCW(o == 1).But also, when the actual 
+            next_point is the last one we added to the convex hull, and sure, we shouldn't add a point
+            which is already in the result subset.
+            And, sure, if we have 3 collinear points, we must take the far way point to minimize
+            the result subset-> The point in that moment of the loop is the new candidate*/
+            if ((next_point == point_in_the_hull) or (o == 1) or (o == 0 and 
+                dist(point_in_the_hull, points->at(i)) >= dist(point_in_the_hull, next_point))) {
+                next_point = points->at(i);
+                on_hull = i;
+            }
+        }
+        //Now, we have the right candidate.
+
+        //Loop Conditional
+        if (points->at(on_hull) == res.at(0)) {
+            cond = false;
+        }
+    }
+
+    res.push_back(res.at(0));
+    return res;
+}

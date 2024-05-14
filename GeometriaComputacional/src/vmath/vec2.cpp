@@ -1,5 +1,6 @@
 #include "vec2.h"
 #include <cmath>
+#include <iso646.h>
 
 #define PI 3.14159265
 
@@ -31,6 +32,15 @@ vec2 operator+(const vec2& lhs, const vec2& rhs) {
 vec2 operator-(const vec2& lhs, const vec2& rhs) {
 	return vec2(lhs.x - rhs.x, lhs.y - rhs.y);
 }
+bool operator==(const vec2& lhs, const vec2& rhs) {
+	if ((lhs.x == rhs.x) and (lhs.y == rhs.y)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 // operators
 //		with scalars
 vec2 operator*(const double& scalar, const vec2& v) {

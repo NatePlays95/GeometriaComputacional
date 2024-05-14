@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <iso646.h>
 
 class vec2 {
 public:
@@ -20,6 +21,7 @@ public:
 	//		with other vectors
 	friend vec2 operator+(const vec2& lhs, const vec2& rhs);
 	friend vec2 operator-(const vec2& lhs, const vec2& rhs);
+	friend bool operator==(const vec2& lhs, const vec2& rhs);
 	//		with scalars
 	friend vec2 operator*(const double& scalar, const vec2& v);
 	friend vec2 operator*(const vec2& v, const double& scalar);
