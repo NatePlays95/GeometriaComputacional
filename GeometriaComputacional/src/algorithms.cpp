@@ -361,3 +361,41 @@ vector<vec2> jarvis(vector<vec2>* points) {
     res.push_back(res.at(0));
     return res;
 }
+
+//Diego
+
+vector<vec2> merger(vector<vec2>* a, vector<vec2>* b) {
+    //TODO
+}
+
+vector<vec2> divide(vector<vec2>* points) {
+    if (points->size() <= 5) {
+        //Sub-Problem
+        return jarvis(points);
+    }
+
+    //Divide more
+    vector<vec2> right{}; vector<vec2> left{};
+    for (int i = 0; i < points->size() / 2; i++)
+        left.push_back(points->at(i));
+    for (int i = points->size() / 2; i < points->size(); i++)
+        right.push_back(points->at(i));
+
+    //Recursion
+    vector<vec2> left_hull = divide(&left);
+    vector<vec2> right_hull = divide(&right);
+
+    //Combine
+    return merger(&left_hull, &right_hull);
+}
+
+vector<vec2> mergeHull(vector<vec2>* points) {
+    
+    //First, we need to sort according to the x-axis
+    quickSortVec2x(points);
+
+    //Do the Magic!
+    vector<vec2> res = divide(points);
+
+    return res;
+}
