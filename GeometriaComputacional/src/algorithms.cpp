@@ -1,3 +1,4 @@
+#include <vector>
 #include <algorithm>
 #include <iostream>
 #include "algorithms.h"
@@ -364,11 +365,12 @@ vector<vec2> jarvis(vector<vec2>* points) {
 
 //Diego
 
-vector<vec2> merger(vector<vec2>* a, vector<vec2>* b) {
+vector<vec2> mergeHullMerger(vector<vec2>* a, vector<vec2>* b) {
     //TODO
+    return vector<vec2>();
 }
 
-vector<vec2> divide(vector<vec2>* points) {
+vector<vec2> mergeHullDivide(vector<vec2>* points) {
     if (points->size() <= 5) {
         //Sub-Problem
         return jarvis(points);
@@ -382,11 +384,11 @@ vector<vec2> divide(vector<vec2>* points) {
         right.push_back(points->at(i));
 
     //Recursion
-    vector<vec2> left_hull = divide(&left);
-    vector<vec2> right_hull = divide(&right);
+    vector<vec2> left_hull = mergeHullDivide(&left);
+    vector<vec2> right_hull = mergeHullDivide(&right);
 
     //Combine
-    return merger(&left_hull, &right_hull);
+    return mergeHullMerger(&left_hull, &right_hull);
 }
 
 vector<vec2> mergeHull(vector<vec2>* points) {
@@ -395,7 +397,7 @@ vector<vec2> mergeHull(vector<vec2>* points) {
     quickSortVec2x(points);
 
     //Do the Magic!
-    vector<vec2> res = divide(points);
+    vector<vec2> res = mergeHullDivide(points);
 
     return res;
 }

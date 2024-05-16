@@ -25,5 +25,5 @@ vector<vec2> jarvis(vector<vec2>* points);
 double orientation(const vec2& p1, const vec2& p2, const vec2& p3);
 double dist(const vec2& p1, const vec2& p2);
 vector<vec2> mergeHull(vector<vec2>* points);
-vector<vec2> divide(vector<vec2>* points);
-vector<vec2> merger(vector<vec2>* a, vector<vec2>* b);
+vector<vec2> mergeHullDivide(vector<vec2>* points);
+vector<vec2> mergeHullMerger(vector<vec2>* a, vector<vec2>* b);
