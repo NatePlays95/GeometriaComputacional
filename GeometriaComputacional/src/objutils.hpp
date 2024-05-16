@@ -13,66 +13,83 @@ struct MeshFace {
 	vector<unsigned int> vertexIndices;
 };
 
-class Mesh {
-protected:
-	string name;
-	vector<vec2> vertices;
-	vector<MeshFace*> faces; //edges are faces
+class MeshObject {
 public:
-	~Mesh() {
+	string name;
+	vector<unsigned int> vertexIndices;
+	vector<MeshFace*> faces; //edges are faces
+
+	~MeshObject() {
 		for (MeshFace* face : faces) delete face;
 		faces.clear();
 	}
+};
 
-	string getName() { return name; }
-	void setName(const string& newName) { name = newName; }
+class Mesh {
+public:
+	string name;
+	vector<vec2> vertices;
+	vector<MeshObject*> objects; //edges are faces
+
+	Mesh() {}
+	Mesh(string nameIn) { name = nameIn; }
+
+	~Mesh() {
+		for (MeshObject* object : objects) delete object;
+		objects.clear();
+	}
+
 	vector<vec2>* getVertices() { return &vertices; }
-	vector<MeshFace*>* getFaces() { return &faces; }
-	void addVertex(vec2 v) { vertices.push_back(v); }
-	void addFace(MeshFace* f) { faces.push_back(f); }
 };
 
 class ObjUtils {
 public:
 
 	// filename é formatado como "<nome>.obj"
-	static vector<Mesh*>* loadFromFile(string filename) {
+	static Mesh* loadMesh(string filename) {
 		string filepath = "assets/" + filename;
 		cout << "loading obj from filepath: " << filepath << endl;
-		vector<Mesh*>* meshes = new vector<Mesh*>();
-		
+		Mesh* mesh = new Mesh();
+
 		ifstream inFile(filepath);
 		if (!inFile.is_open()) {
 			cerr << "Erro ao abrir o arquivo." << endl;
-			return meshes;
+			return mesh;
 		}
 
 		string line;
-		Mesh* currentMesh = nullptr;
+		MeshObject* currentObject = nullptr;
+		unsigned int vertexCounter = 1; //vertices are 1-indexed. oof.
+		// toda vez ao salvar um indice, subtrair um para tornar 0-indexed.
+
 		while (std::getline(inFile, line)) {
 			cout << "line: " << line << endl;
 			if (line.empty() || line[0] == '#') continue;
-	
+
 			istringstream iss(line);
 			string token;
 			iss >> token;
 
 			if (token == "o") {
-				currentMesh = new Mesh();
-				meshes->push_back(currentMesh);
-				// pegar nome
 				string name = line.substr(2); // exclui
-				currentMesh->setName(name);
-				cout << currentMesh->getName() << endl;
+				currentObject = new MeshObject();
+				mesh->objects.push_back(currentObject);
+				// pegar nome
+				
+				currentObject->name = name;
+				cout << currentObject->name << endl;
 				continue;
 			}
-			if (currentMesh == nullptr) continue;
+			if (currentObject == nullptr) continue;
 
 			if (token == "v") {
 				double x, y;
 				iss >> x; iss >> y;
 				vec2 point(x, y);
-				currentMesh->addVertex(point);
+				//currentMesh->addVertex(point);
+				mesh->vertices.push_back(point);
+				currentObject->vertexIndices.push_back(vertexCounter - 1);
+				vertexCounter += 1;
 			}
 
 			if (token == "f") {
@@ -84,40 +101,41 @@ public:
 					istringstream viiss(vertexIndexStr);
 					int vertexIndex;
 					viiss >> vertexIndex;
-					face->vertexIndices.push_back(vertexIndex);
+					face->vertexIndices.push_back(vertexIndex - 1);
 				}
-				currentMesh->addFace(face);
+				currentObject->faces.push_back(face);
 			}
 
 			continue;
 
 		}
 		inFile.close();
-		return meshes;
+		return mesh;
 	}
 
 	// filename é formatado como "<nome>.obj"
-	static int saveToFile(vector<Mesh*>* meshes, string filename) {
+	static int saveMesh(Mesh* mesh, string filename) {
 		string filepath = "output/" + filename;
 		cout << "saving obj to filepath: " << filepath << endl;
-		
+
 		ofstream outFile(filepath);
 		if (!outFile.is_open()) {
-			cerr << "Erro ao abrir o arquivo." << endl;
+			cerr << "Erro ao abrir o arquivo. Talvez a pasta não exista ou esteja inacessível." << endl;
 			return 1;
 		}
 
-		for (Mesh* currentMesh : *meshes) {
-			outFile << "o " << currentMesh->getName() << endl;
+		for (MeshObject* currentObject : mesh->objects) {
+			outFile << "o " << currentObject->name << endl;
 
-			for (vec2 vertex : *(currentMesh->getVertices())) {
+			for (unsigned int vertexIndex : currentObject->vertexIndices) {
+				vec2 vertex = mesh->vertices.at(vertexIndex);
 				outFile << "v " << vertex.x << " " << vertex.y << " 0.0" << endl;
 			}
 
-			for (MeshFace* face : *(currentMesh->getFaces())) {
+			for (MeshFace* face : currentObject->faces) {
 				outFile << "f ";
 				for (int vertexIndex : face->vertexIndices) {
-					outFile << vertexIndex << " ";
+					outFile << vertexIndex + 1 << " ";
 				}
 				outFile << endl;
 			}
@@ -126,4 +144,5 @@ public:
 		outFile.close();
 		return 0;
 	}
+
 };

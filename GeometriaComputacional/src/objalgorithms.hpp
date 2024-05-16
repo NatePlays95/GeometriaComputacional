@@ -5,33 +5,37 @@
 
 using namespace std;
 
-vector<Mesh*>* jarvisObj(vector<Mesh*>* meshes) {
-	vector<Mesh*>* convexedMeshes = new vector<Mesh*>();
+Mesh* jarvisObj(Mesh* mesh) {
+	Mesh* convexedMesh = new Mesh();
 
-	for (Mesh* mesh : *meshes) {
-		//cout << "MESHHHH: " << mesh->getName() << endl;
-		Mesh* newMesh = new Mesh();
-		newMesh->setName(mesh->getName());
+	unsigned int vertexCounter = 0; //global vertex counter
+	for (MeshObject* meshObject : mesh->objects) {
 
 		//deconstruct each "object", just get all the points
-		vector<vec2>* vertices = mesh->getVertices();
+		vector<vec2>* points = new vector<vec2>();
+		for (unsigned int index : meshObject->vertexIndices) {
+			points->push_back(mesh->vertices.at(index));
+		}
 
 		//do the jarvis method
-		vector<vec2> convexHull = jarvis(vertices);
+		vector<vec2> convexHull = jarvis(points);
 
 		//reconstruct a single face with all the points
+		MeshObject* newObject = new MeshObject();
+		newObject->name = meshObject->name;
 		MeshFace* newFace = new MeshFace();
-		unsigned int currentVertexIndex = 0;
+		newObject->faces.push_back(newFace);
+
 		for (vec2 point : convexHull) {
-			newMesh->addVertex(point);
-			newFace->vertexIndices.push_back(currentVertexIndex);
-			currentVertexIndex += 1;
+			convexedMesh->vertices.push_back(point);
+			newObject->vertexIndices.push_back(vertexCounter);
+			newFace->vertexIndices.push_back(vertexCounter);
+			vertexCounter += 1; //global vertex counter
 		}
-		newMesh->addFace(newFace);
 
 		//save each individual object
-		convexedMeshes->push_back(newMesh);
+		convexedMesh->objects.push_back(newObject);
 	}
 
-	return convexedMeshes;
+	return convexedMesh;
 }
