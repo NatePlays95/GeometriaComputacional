@@ -2,7 +2,7 @@
 #include <iostream>
 #include "vmath.h"
 #include "tarefa.h"
-#include "objalgorithms.hpp"
+//#include "objalgorithms.hpp"
 
 using namespace std;
 
@@ -65,9 +65,9 @@ int programLoop() {
 int main() {
     //test
     //tarefa2_q3();
-    auto onix = ObjUtils::loadMesh("onix.obj");
-    auto convexOnix = jarvisObj(onix);
-    ObjUtils::saveMesh(convexOnix, "onix_export.obj");
-    //ObjUtils::saveMesh(onix, "onix_export.obj");
-    //teste_pseudoangulos();
+    //auto onix = ObjUtils::loadMesh("onix.obj");
+    //auto convexOnix = jarvisObj(onix);
+    //ObjUtils::saveMesh(convexOnix, "onix_export.obj");
+
+    tarefa3_q3();
 }

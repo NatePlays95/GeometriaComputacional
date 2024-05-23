@@ -1,8 +1,12 @@
 #include "vmath.h"
 #include "algorithms.h"
 #include "tarefa.h"
+#include "objalgorithms.hpp"
 
 #include <vector>
+#include <random>
+//#include <stdlib.h>
+//#include <time.h>
 
 using namespace std;
 
@@ -115,4 +119,68 @@ void teste_pseudoangulos() {
 		v = vec2(cos(angle), sin(angle));
 		cout << v << " angle: buffer + PI*" << i * 0.25 << " pseudo: " << v.toPseudoAngle() << endl;
 	}
+}
+
+
+void tarefa3_q3() {
+	//srand((unsigned)time(NULL));
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_real_distribution<> dis(-10.0, 10.0);
+	
+	Mesh* objMesh = nullptr;
+	Mesh* jarvisObjMesh = nullptr;
+
+	vector<vec2>* points = new vector<vec2>();
+	//nota: jarvis vai ordenar os pontos dentro de points como colateral
+	int pointCount = 0;
+
+	for (int i = 0; i < 10; i++) {
+		points->push_back(vec2(dis(gen), dis(gen)));
+		pointCount += 1;
+		if (pointCount >= 10) break;
+	}
+	vector<vec2> ogPoints10 = vector<vec2>(*points);
+	vector<vec2> jarvisPoints10 = jarvis(points);
+
+	for (int i = 0; i < 100; i++) {
+		points->push_back(vec2(dis(gen), dis(gen)));
+		pointCount += 1;
+		if (pointCount >= 100) break;
+	}
+
+	vector<vec2> ogPoints100 = vector<vec2>(*points);
+	vector<vec2> jarvisPoints100 = jarvis(points);
+
+	for (int i = 0; i < 1000; i++) {
+		points->push_back(vec2(dis(gen), dis(gen)));
+		pointCount += 1;
+		if (pointCount >= 1000) break;
+	}
+
+	vector<vec2> ogPoints1000 = vector<vec2>(*points);
+	vector<vec2> jarvisPoints1000 = jarvis(points);
+
+	//export
+	objMesh = new Mesh(&ogPoints10);
+	jarvisObjMesh = new Mesh(&jarvisPoints10);
+	//jarvisObjMesh = jarvisObj(objMesh);
+	jarvisObjMesh->objects.at(0)->makeSingleFace();
+	ObjUtils::saveMesh(objMesh, "jarvisTestBefore10.obj");
+	ObjUtils::saveMesh(jarvisObjMesh, "jarvisTestAfter10.obj");
+
+	objMesh = new Mesh(&ogPoints100);
+	jarvisObjMesh = new Mesh(&jarvisPoints100);
+	//jarvisObjMesh = jarvisObj(objMesh);
+	jarvisObjMesh->objects.at(0)->makeSingleFace();
+	ObjUtils::saveMesh(objMesh, "jarvisTestBefore100.obj");
+	ObjUtils::saveMesh(jarvisObjMesh, "jarvisTestAfter100.obj");
+
+	objMesh = new Mesh(&ogPoints1000);
+	jarvisObjMesh = new Mesh(&jarvisPoints1000);
+	//jarvisObjMesh = jarvisObj(objMesh);
+	jarvisObjMesh->objects.at(0)->makeSingleFace();
+	ObjUtils::saveMesh(objMesh, "jarvisTestBefore1000.obj");
+	ObjUtils::saveMesh(jarvisObjMesh, "jarvisTestAfter1000.obj");
+
 }

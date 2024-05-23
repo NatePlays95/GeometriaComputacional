@@ -19,9 +19,23 @@ public:
 	vector<unsigned int> vertexIndices;
 	vector<MeshFace*> faces; //edges are faces
 
+	MeshObject() {
+		name = "MESH";
+		vertexIndices = vector<unsigned int>();
+		faces = vector<MeshFace*>();
+	}
+
 	~MeshObject() {
 		for (MeshFace* face : faces) delete face;
 		faces.clear();
+	}
+
+	void makeSingleFace() {
+		for (MeshFace* face : faces) delete face;
+		faces.clear();
+		MeshFace* newFace = new MeshFace();
+		newFace->vertexIndices = vector<unsigned int>(this->vertexIndices);
+		faces.push_back(newFace);
 	}
 };
 
@@ -33,6 +47,19 @@ public:
 
 	Mesh() {}
 	Mesh(string nameIn) { name = nameIn; }
+	Mesh(vector<vec2>* points) {
+		objects = vector<MeshObject*>();
+		vertices = vector<vec2>(*points);
+		MeshObject* newObject = new MeshObject();
+		for (int i = 0; i < points->size(); i++) {
+			newObject->vertexIndices.push_back(i);
+		}
+		objects.push_back(newObject);
+		//cout << "objects: ";
+		//for (auto i : objects)
+		//	std::cout << i << ' ';
+		//cout << endl;
+	}
 
 	~Mesh() {
 		for (MeshObject* object : objects) delete object;
@@ -40,6 +67,11 @@ public:
 	}
 
 	vector<vec2>* getVertices() { return &vertices; }
+	void makeObjectsSingleFace() {
+		for (MeshObject* object : objects) {
+			object->makeSingleFace();
+		}
+	}
 };
 
 class ObjUtils {
