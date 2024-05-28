@@ -359,45 +359,167 @@ vector<vec2> jarvis(vector<vec2>* points) {
         }
     }
 
+    // Sorting the points in the anti-clockwise order
+    mid = { 0, 0 };
+    int n = res.size();
+    for (int i = 0; i < n; i++) {
+        mid.x += res[i].x;
+        mid.y += res[i].y;
+        res[i].x *= n;
+        res[i].y *= n;
+    }
+    sort(res.begin(), res.end(), compare);
+    for (int i = 0; i < n; i++)
+        res[i] = { res[i].x / n, res[i].y / n };
+
+
     res.push_back(res.at(0));
     return res;
 }
 
 //Diego
 
-vector<vec2> mergeHullMerger(vector<vec2>* a, vector<vec2>* b) {
-    //TODO
-    return vector<vec2>();
+/*To determine the quadrant
+(+, +) -> Fist Quadrant
+(-, +) -> Second Quadrant
+(-, -) -> Third Quadrant
+(+, -) -> Forth Quadrant */
+int quad(vec2 p) {
+    if (p.x >= 0 && p.y >= 0)
+        return 1;
+    if (p.x <= 0 && p.y >= 0)
+        return 2;
+    if (p.x <= 0 && p.y <= 0)
+        return 3;
+    return 4;
 }
 
-vector<vec2> mergeHullDivide(vector<vec2>* points) {
-    if (points->size() <= 5) {
-        //Sub-Problem
-        return jarvis(points);
+//Used inside std::sort function -> Sorting in CCW order
+bool compare(vec2 p1, vec2 q1) {
+    vec2 p{ p1.x - mid.x, p1.y - mid.y };
+    vec2 q{ q1.x - mid.x, q1.y - mid.y };
+
+    int one = quad(p);
+    int two = quad(q);
+
+    if (one != two)
+        return (one < two);
+    return (p.y * q.x > q.y * p.x);
+}
+
+// Checks the orientation of the triplet (a, b, c)
+// 0 -> a, b and c are collinear
+// 1 -> Clockwise
+// -1 -> Counterclockwise
+int check_ori(vec2 a, vec2 b, vec2 c) {
+    double res = (b.y - a.y) * (c.x - b.x) - (c.y - b.y) * (b.x - a.x);
+
+    if (res == 0)
+        return 0;
+    if (res > 0)
+        return 1;
+    return -1;
+}
+
+vector<vec2> mergeHullMerger(vector<vec2> a, vector<vec2> b) {
+    // n1 -> number of points in polygon a
+    // n2 -> number of points in polygon b
+    int n1 = a.size(), n2 = b.size();
+
+    int ia = 0, ib = 0;
+    for (int i = 1; i < n1; i++)
+        if (a[i].x > a[ia].x)
+            ia = i;
+
+    // ib -> leftmost point of b
+    for (int i = 1; i < n2; i++)
+        if (b[i].x < b[ib].x)
+            ib = i;
+
+    // finding the upper tangent
+    int inda = ia, indb = ib;
+    bool done = 0;
+    while (!done) {
+        done = 1;
+        while (check_ori(b[indb], a[inda], a[(inda + 1) % n1]) > 0)
+            inda = (inda + 1) % n1;
+
+        while (check_ori(a[inda], b[indb], b[(n2 + indb - 1) % n2]) < 0) {
+            indb = (n2 + indb - 1) % n2;
+            done = 0;
+        }
     }
 
-    //Divide more
-    vector<vec2> right{}; vector<vec2> left{};
-    for (int i = 0; i < points->size() / 2; i++)
-        left.push_back(points->at(i));
-    for (int i = points->size() / 2; i < points->size(); i++)
-        right.push_back(points->at(i));
+    int uppera = inda, upperb = indb;
+    inda = ia, indb = ib;
+    done = 0;
+    while (!done) { // finding the lower tangent
+        done = 1;
+        while (check_ori(a[inda], b[indb], b[(indb + 1) % n2]) > 0)
+            indb = (indb + 1) % n2;
 
-    //Recursion
-    vector<vec2> left_hull = mergeHullDivide(&left);
-    vector<vec2> right_hull = mergeHullDivide(&right);
+        while (check_ori(b[indb], a[inda], a[(n1 + inda - 1) % n1]) < 0) {
+            inda = (n1 + inda - 1) % n1;
+            done = 0;
+        }
+    }
 
-    //Combine
-    return mergeHullMerger(&left_hull, &right_hull);
+    int lowera = inda, lowerb = indb;
+    vector<vec2> ret;
+
+    // ret contains the convex hull after merging the two convex hulls
+    // with the points sorted in anti-clockwise order
+    int ind = uppera;
+    ret.push_back(a[uppera]);
+    while (ind != lowera) {
+        ind = (ind + 1) % n1;
+        ret.push_back(a[ind]);
+    }
+
+    ind = lowerb;
+    ret.push_back(b[lowerb]);
+    while (ind != upperb) {
+        ind = (ind + 1) % n2;
+        ret.push_back(b[ind]);
+    }
+    return ret;
 }
 
-vector<vec2> mergeHull(vector<vec2>* points) {
+// Returns the convex hull for the given set of points
+vector<vec2> mergeHullDivide(vector<vec2> a) {
+    // If the number of points is less than 6 then the
+    // function uses the jarvis algorithm to find the
+    // convex hull
+    if (a.size() <= 5) {
+        vector<vec2> res = jarvis(&a);
+        res.erase(res.end() - 1);
+        return res;
+    }
+
+    // left contains the left half points
+    // right contains the right half points
+    vector<vec2> left, right;
+    for (int i = 0; i < a.size() / 2; i++)
+        left.push_back(a[i]);
+    for (int i = a.size() / 2; i < a.size(); i++)
+        right.push_back(a[i]);
+
+    // convex hull for the left and right sets
+    vector<vec2> left_hull = mergeHullDivide(left);
+    vector<vec2> right_hull = mergeHullDivide(right);
+
+    // merging the convex hulls
+    return mergeHullMerger(left_hull, right_hull);
+}
+
+vector<vec2> mergeHull(vector<vec2> points) {
     
     //First, we need to sort according to the x-axis
-    quickSortVec2x(points);
+    quickSortVec2x(&points);
 
     //Do the Magic!
     vector<vec2> res = mergeHullDivide(points);
+    res.push_back(res.at(0));
 
     return res;
 }
