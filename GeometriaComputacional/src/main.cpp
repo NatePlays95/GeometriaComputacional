@@ -178,23 +178,22 @@ int main() {
 
     // Here would be possible to read some .obj input file
     //std::vector<vec2> inputPoints = {
-    //    {1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}
+    //    {1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 2.8}, {1.9, -3.01}, {3.12, -2.34}, 
+    //    {-2.56, -1.78}, {-4.91, -3.123}, {-3.456, 3.789}, {-2.1111, 2.2222}
     //};
 
+    vector<vec2> inputPoints = vector<vec2>();
     int iterationSize = 100; //100 or 1000
     int pointCount = 0;
-
-    vector<vec2> inputPoints = vector<vec2>();
-
     for (int i = 0; i < iterationSize; i++) {
-        inputPoints.push_back(vec2(dis(gen), dis(gen)));
+        inputPoints.push_back(vec2(round(dis(gen)), round(dis(gen))));
         pointCount += 1;
         if (pointCount >= iterationSize) break;
     }
 
     // Call the magic!
-    //std::vector<vec2> convexHull = mergeHull(inputPoints);
-    std::vector<vec2> convexHull = jarvis(&inputPoints);
+    std::vector<vec2> convexHull = mergeHull(inputPoints);
+    //std::vector<vec2> convexHull = jarvis(&inputPoints);
     
     //I would like to see at a terminal too
     for (int i = 0; i < convexHull.size(); i++) {

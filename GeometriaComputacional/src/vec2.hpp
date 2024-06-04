@@ -45,4 +45,6 @@ public:
 	vec2 clampedPositive();
 	vec2 project(vec2& base);
 	vec2 reflect(vec2& normal);
+
+	double toPseudoAngleGraham();
 };

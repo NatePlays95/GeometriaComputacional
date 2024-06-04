@@ -269,18 +269,34 @@ bool compare(vec2 p1, vec2 q1) {
 // 0 -> a, b and c are collinear
 // 1 -> Clockwise
 // -1 -> Counterclockwise
-//int check_ori(vec2 a, vec2 b, vec2 c) {
-//    double res = (b.y - a.y) * (c.x - b.x) - (c.y - b.y) * (b.x - a.x);
-//
-//    if (res == 0)
-//        return 0;
-//    if (res > 0)
-//        return 1;
-//    return -1;
-//}
 int check_ori(vec2 a, vec2 b, vec2 c) {
+    double res = (b.y - a.y) * (c.x - b.x) - (c.y - b.y) * (b.x - a.x);
+
+    if (res == 0)
+        return 0;
+    if (res > 0)
+        return 1;
     return -1;
 }
+//int check_ori(vec2 a, vec2 b, vec2 c) {
+//    vec2 ba = a - b;
+//    vec2 bc = c - b;
+//    double ba_pseudoAngle = ba.toPseudoAngleGraham();
+//    double bc_pseudoAngle = bc.toPseudoAngleGraham();
+//
+//    if (ba_pseudoAngle == bc_pseudoAngle) return 0;
+//    if (ba_pseudoAngle - 2 == bc_pseudoAngle) return 0;
+//    if (ba_pseudoAngle + 2 == bc_pseudoAngle) return 0;
+//
+//    if (bc_pseudoAngle - 2 > ba_pseudoAngle || bc_pseudoAngle < ba_pseudoAngle) return -1;
+//    return 1;
+//    
+//    //if (ba_pseudoAngle == bc_pseudoAngle) return 0;
+//    //double dot = ba.normalized().dot(bc.normalized());
+//    //if (dot == 0 || dot == 1 || dot == -1) return 0;
+//    //if (dot > 0) return 1;
+//    //return -1;
+//}
 
 vector<vec2> subproblem_jar(vector<vec2>* points) {
     vector<vec2> res{};

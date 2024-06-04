@@ -89,3 +89,9 @@ vec2 vec2::project(vec2& base) {
 vec2 vec2::reflect(vec2& normal) {
 	return *this - (normal * (this->dot(normal)) * 2);
 }
+
+double vec2::toPseudoAngleGraham() {
+	double p = this->x / (abs(this->x) + abs(this->y)); // -1 to 1 increasing with x
+	if (this->y < 0) return 3 + p;						// 2 to 4 increasing with x
+	else return 1 - p;									// 0 to 2 decreasing with x
+}

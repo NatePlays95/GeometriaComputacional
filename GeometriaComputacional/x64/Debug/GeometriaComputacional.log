@@ -1,10 +1,10 @@
 ﻿  main.cpp
 C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(81,43): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
 C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(114,46): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(231,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(231,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(233,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(233,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(230,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(230,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(232,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(232,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
   GeometriaComputacional.vcxproj -> C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\x64\Debug\GeometriaComputacional.exe
   Copia pasta assets para a build
   C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\assets\onix.blend
