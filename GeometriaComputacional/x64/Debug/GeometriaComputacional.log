@@ -1,12 +1,10 @@
 ﻿  main.cpp
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(80,43): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(113,46): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(210,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(210,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(212,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(212,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
-  glad.c
-  LINK : C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\x64\Debug\GeometriaComputacional.exe não encontrado ou não compilado pelo o último link incremental; executando link completo
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(81,43): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(114,46): warning C4267: 'argumento': conversão de 'size_t' para 'GLsizei', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(231,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(231,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(233,48): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
+C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\src\main.cpp(233,38): warning C4244: 'argumento': conversão de 'double' para 'GLfloat', possível perda de dados
   GeometriaComputacional.vcxproj -> C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\x64\Debug\GeometriaComputacional.exe
   Copia pasta assets para a build
   C:\Users\natan\OneDrive\Documentos\GitHub\GeometriaComputacional\GeometriaComputacional\assets\onix.blend

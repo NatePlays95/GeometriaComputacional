@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <random>
 #include "alg.hpp"
 
 using namespace std;
@@ -167,13 +168,33 @@ int main() {
     // Set the BackGround Color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black
 
+
+
+
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> dis(-5.0, 5.0);
+
     // Here would be possible to read some .obj input file
-    std::vector<vec2> inputPoints = {
-        {1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}
-    };
+    //std::vector<vec2> inputPoints = {
+    //    {1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}
+    //};
+
+    int iterationSize = 100; //100 or 1000
+    int pointCount = 0;
+
+    vector<vec2> inputPoints = vector<vec2>();
+
+    for (int i = 0; i < iterationSize; i++) {
+        inputPoints.push_back(vec2(dis(gen), dis(gen)));
+        pointCount += 1;
+        if (pointCount >= iterationSize) break;
+    }
 
     // Call the magic!
-    std::vector<vec2> convexHull = mergeHull(inputPoints);
+    //std::vector<vec2> convexHull = mergeHull(inputPoints);
+    std::vector<vec2> convexHull = jarvis(&inputPoints);
     
     //I would like to see at a terminal too
     for (int i = 0; i < convexHull.size(); i++) {
