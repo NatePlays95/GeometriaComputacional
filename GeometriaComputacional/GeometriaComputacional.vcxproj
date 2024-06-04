@@ -149,11 +149,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\algorithms.cpp" />
+    <ClCompile Include="src\alg.cpp" />
     <ClCompile Include="GeometriaComputacional.cpp" />
+    <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\tarefa.cpp" />
-    <ClCompile Include="src\vmath\vec2.cpp" />
+    <ClCompile Include="src\vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="lib\glfw3.dll">
@@ -166,14 +166,13 @@
     <Library Include="lib\glfw3_mt.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\alg.hpp" />
     <ClInclude Include="src\algorithms.h" />
     <ClInclude Include="include\GLFW\glfw3.h" />
     <ClInclude Include="include\GLFW\glfw3native.h" />
     <ClInclude Include="src\objalgorithms.hpp" />
     <ClInclude Include="src\objutils.hpp" />
-    <ClInclude Include="src\tarefa.h" />
-    <ClInclude Include="src\vmath.h" />
-    <ClInclude Include="src\vmath\vec2.h" />
+    <ClInclude Include="src\vec2.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
