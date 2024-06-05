@@ -261,7 +261,7 @@ bool compare(vec2 p1, vec2 q1) {
     int two = quad(q);
 
     if (one != two)
-        return (one < two);
+        return (one > two); // < >
     return (p.y * q.x > q.y * p.x);
 }
 
@@ -292,7 +292,11 @@ int check_ori(vec2 a, vec2 b, vec2 c) {
 //    return 1;
 //    
 //    //if (ba_pseudoAngle == bc_pseudoAngle) return 0;
-//    //double dot = ba.normalized().dot(bc.normalized());
+// 
+// 
+//    vec2 ba = a - b;
+//    vec2 bc = c - b;
+//    //double cross = ba.normalized().cross(bc.normalized());
 //    //if (dot == 0 || dot == 1 || dot == -1) return 0;
 //    //if (dot > 0) return 1;
 //    //return -1;

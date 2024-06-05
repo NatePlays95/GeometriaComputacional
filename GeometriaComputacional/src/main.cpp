@@ -177,19 +177,23 @@ int main() {
     uniform_real_distribution<> dis(-5.0, 5.0);
 
     // Here would be possible to read some .obj input file
-    //std::vector<vec2> inputPoints = {
-    //    {1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 2.8}, {1.9, -3.01}, {3.12, -2.34}, 
-    //    {-2.56, -1.78}, {-4.91, -3.123}, {-3.456, 3.789}, {-2.1111, 2.2222}
-    //};
+    std::vector<vec2> inputPoints = {
+        {1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 4.01}, {1.9, -3.01}, {3.12, -2.34}, 
+        {-2.56, -1.78}, {-4.91, -3.123}, {-3.456, 3.789}, {-2.1111, 2.2222}
+    };
 
     vector<vec2> inputPoints = vector<vec2>();
-    int iterationSize = 100; //100 or 1000
+    int iterationSize = 10; //100 or 1000
     int pointCount = 0;
     for (int i = 0; i < iterationSize; i++) {
         inputPoints.push_back(vec2(round(dis(gen)), round(dis(gen))));
         pointCount += 1;
         if (pointCount >= iterationSize) break;
     }
+
+    //std::vector<vec2> inputPoints = {
+    //    {1.9, -3.01}, {2.3, 1.4}, {3.12, -2.34}, {3.7, 4.01}, {4.5, 3.6}
+    //};
 
     // Call the magic!
     std::vector<vec2> convexHull = mergeHull(inputPoints);
