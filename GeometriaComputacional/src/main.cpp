@@ -5,8 +5,11 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
-#include <random>
+#include <cstdlib> // Para a função rand()
+#include <ctime>   // Para a função time()
 #include "alg.hpp"
+#include "objutils.hpp"
+#include <random>
 
 using namespace std;
 
@@ -117,6 +120,53 @@ static void drawConvexHull(const std::vector<vec2>& points, GLuint shaderProgram
     glDeleteVertexArrays(1, &VAO);
 }
 
+static vector<vec2> gerarPontosAleatorios(int n, int min_val, int max_val) {
+    std::vector<vec2> pontos;
+    for (int i = 0; i < n; ++i) {
+        int x = min_val + rand() % (max_val - min_val + 1);
+        int y = min_val + rand() % (max_val - min_val + 1);
+        pontos.emplace_back(x, y);
+    }
+    return pontos;
+}
+
+static void temaMergeHull() {
+    Mesh* mesh = ObjUtils::loadMesh("onix.obj");
+	Mesh* convexedMesh = new Mesh();
+
+	unsigned int vertexCounter = 0; //global vertex counter
+	for (MeshObject* meshObject : mesh->objects) {
+
+		//deconstruct each "object", just get all the points
+		vector<vec2>* points = new vector<vec2>();
+		for (unsigned int index : meshObject->vertexIndices) {
+			points->push_back(mesh->vertices.at(index));
+		}
+
+		//do the method
+		vector<vec2> convexHull = mergeHull(*points);
+        //vector<vec2> convexHull = jarvis(points);
+
+		//reconstruct a single face with all the points
+		MeshObject* newObject = new MeshObject();
+		newObject->name = meshObject->name;
+		MeshFace* newFace = new MeshFace();
+		newObject->faces.push_back(newFace);
+
+		for (vec2 point : convexHull) {
+			convexedMesh->vertices.push_back(point);
+			newObject->vertexIndices.push_back(vertexCounter);
+			newFace->vertexIndices.push_back(vertexCounter);
+			vertexCounter += 1; //global vertex counter
+		}
+
+		//save each individual object
+		convexedMesh->objects.push_back(newObject);
+	}
+
+    ObjUtils::saveMesh(convexedMesh, "onix_export_mergehull.obj");
+}
+
 // Vertex Shader Source
 const char* vertexShaderSource = R"(
 #version 330 core
@@ -168,40 +218,44 @@ int main() {
     // Set the BackGround Color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black
 
+    // Here would be possible to read some .obj input file
+    
+    //std::vector<vec2> inputPoints = {
+        //{1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}
+    //}; -> OK
 
+    //std::vector<vec2> inputPoints = {
+        //{1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 4.01}, {1.9, -3.01}, {3.12, -2.34},
+            //{-2.56, -1.78}, {-4.91, -3.123}, {-3.456, 3.789}, {-2.1111, 2.2222}
+    //}; -> OK
 
+    //srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de números aleatórios
+    //std::vector<vec2> inputPoints = gerarPontosAleatorios(20, -50, 50);
 
+    temaMergeHull();
 
     random_device rd;
     mt19937 gen(rd());
     uniform_real_distribution<> dis(-5.0, 5.0);
 
-    // Here would be possible to read some .obj input file
-    std::vector<vec2> inputPoints = {
-        {1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 4.01}, {1.9, -3.01}, {3.12, -2.34}, 
-        {-2.56, -1.78}, {-4.91, -3.123}, {-3.456, 3.789}, {-2.1111, 2.2222}
-    };
-
     vector<vec2> inputPoints = vector<vec2>();
     int iterationSize = 10; //100 or 1000
     int pointCount = 0;
     for (int i = 0; i < iterationSize; i++) {
-        inputPoints.push_back(vec2(round(dis(gen)), round(dis(gen))));
+        inputPoints.push_back(vec2((dis(gen)), (dis(gen))));
         pointCount += 1;
         if (pointCount >= iterationSize) break;
     }
 
-    //std::vector<vec2> inputPoints = {
-    //    {1.9, -3.01}, {2.3, 1.4}, {3.12, -2.34}, {3.7, 4.01}, {4.5, 3.6}
-    //};
-
     // Call the magic!
-    std::vector<vec2> convexHull = mergeHull(inputPoints);
     //std::vector<vec2> convexHull = jarvis(&inputPoints);
+    std::vector<vec2> convexHull = mergeHull(inputPoints);
     
     //I would like to see at a terminal too
+    std::cout << "Convex Hull: " << endl;
+
     for (int i = 0; i < convexHull.size(); i++) {
-        cout << convexHull.at(i) << endl;
+        std::cout << convexHull.at(i) << endl;
     }
 
     // Build the shader program

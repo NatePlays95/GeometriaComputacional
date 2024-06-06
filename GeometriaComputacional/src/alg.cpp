@@ -1,4 +1,5 @@
 #include "alg.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -261,8 +262,8 @@ bool compare(vec2 p1, vec2 q1) {
     int two = quad(q);
 
     if (one != two)
-        return (one > two); // < >
-    return (p.y * q.x > q.y * p.x);
+        return (one < two);
+    return (p.y * q.x < q.y * p.x);
 }
 
 // Checks the orientation of the triplet (a, b, c)
@@ -278,29 +279,6 @@ int check_ori(vec2 a, vec2 b, vec2 c) {
         return 1;
     return -1;
 }
-//int check_ori(vec2 a, vec2 b, vec2 c) {
-//    vec2 ba = a - b;
-//    vec2 bc = c - b;
-//    double ba_pseudoAngle = ba.toPseudoAngleGraham();
-//    double bc_pseudoAngle = bc.toPseudoAngleGraham();
-//
-//    if (ba_pseudoAngle == bc_pseudoAngle) return 0;
-//    if (ba_pseudoAngle - 2 == bc_pseudoAngle) return 0;
-//    if (ba_pseudoAngle + 2 == bc_pseudoAngle) return 0;
-//
-//    if (bc_pseudoAngle - 2 > ba_pseudoAngle || bc_pseudoAngle < ba_pseudoAngle) return -1;
-//    return 1;
-//    
-//    //if (ba_pseudoAngle == bc_pseudoAngle) return 0;
-// 
-// 
-//    vec2 ba = a - b;
-//    vec2 bc = c - b;
-//    //double cross = ba.normalized().cross(bc.normalized());
-//    //if (dot == 0 || dot == 1 || dot == -1) return 0;
-//    //if (dot > 0) return 1;
-//    //return -1;
-//}
 
 vector<vec2> subproblem_jar(vector<vec2>* points) {
     vector<vec2> res{};
@@ -368,15 +346,12 @@ vector<vec2> subproblem_jar(vector<vec2>* points) {
     for (int i = 0; i < n; i++) {
         mid.x += res[i].x;
         mid.y += res[i].y;
-        res[i].x *= n;
-        res[i].y *= n;
     }
+    mid.x = mid.x / n;
+    mid.y = mid.y / n;
+    //Now we have the centroid!
     sort(res.begin(), res.end(), compare);
-    for (int i = 0; i < n; i++)
-        res[i] = { res[i].x / n, res[i].y / n };
 
-
-    res.push_back(res.at(0));
     return res;
 }
 
@@ -410,6 +385,7 @@ vector<vec2> mergeHullMerger(vector<vec2> a, vector<vec2> b) {
     }
 
     int uppera = inda, upperb = indb;
+
     inda = ia, indb = ib;
     done = 0;
     while (!done) { // finding the lower tangent
@@ -424,6 +400,7 @@ vector<vec2> mergeHullMerger(vector<vec2> a, vector<vec2> b) {
     }
 
     int lowera = inda, lowerb = indb;
+
     vector<vec2> ret;
 
     // ret contains the convex hull after merging the two convex hulls
@@ -450,9 +427,7 @@ vector<vec2> mergeHullDivide(vector<vec2> a) {
     // function uses the jarvis algorithm to find the
     // convex hull
     if (a.size() <= 5) {
-        vector<vec2> res = subproblem_jar(&a);
-        res.erase(res.end() - 1);
-        return res;
+        return subproblem_jar(&a);
     }
 
     // left contains the left half points
