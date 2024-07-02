@@ -220,9 +220,10 @@ int main() {
 
     // Here would be possible to read some .obj input file
     
-    //std::vector<vec2> inputPoints = {
-        //{1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}
-    //}; -> OK
+    std::vector<vec2> inputPoints = {
+        /*{1, 1}, {2, 1}, {4, 3}, {3, 2}, {1, -3}, {3, -2}, {-2, -1}, {-4, -3}, {-3, 3}, {-2, 2}*/
+        {-1, 0}, {-0.5, 0}, {0, 0}, {0.5, 0}, {1, 0}, {0, -1.0}, {0, -0.5}, {0, 0.5}, {0, 1}
+    }; //-> OK
 
     //std::vector<vec2> inputPoints = {
         //{1.1, 1.2}, {2.3, 1.4}, {4.5, 3.6}, {3.7, 4.01}, {1.9, -3.01}, {3.12, -2.34},
@@ -236,20 +237,20 @@ int main() {
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_real_distribution<> dis(-5.0, 5.0);
+    uniform_real_distribution<> dis(-10.0, 10.0);
 
-    vector<vec2> inputPoints = vector<vec2>();
-    int iterationSize = 10; //100 or 1000
-    int pointCount = 0;
-    for (int i = 0; i < iterationSize; i++) {
-        inputPoints.push_back(vec2((dis(gen)), (dis(gen))));
-        pointCount += 1;
-        if (pointCount >= iterationSize) break;
-    }
+    //vector<vec2> inputPoints = vector<vec2>();
+    //int iterationSize = 1000; //100 or 1000
+    //int pointCount = 0;
+    //for (int i = 0; i < iterationSize; i++) {
+    //    inputPoints.push_back(vec2((dis(gen)), (dis(gen))));
+    //    pointCount += 1;
+    //    if (pointCount >= iterationSize) break;
+    //}
 
     // Call the magic!
-    //std::vector<vec2> convexHull = jarvis(&inputPoints);
-    std::vector<vec2> convexHull = mergeHull(inputPoints);
+    std::vector<vec2> convexHull = jarvis(&inputPoints);
+    //std::vector<vec2> convexHull = mergeHull(inputPoints);
     
     //I would like to see at a terminal too
     std::cout << "Convex Hull: " << endl;
